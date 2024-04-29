@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 const { connectToMongoDB } = require("./connect");
 const { handleGenerateShortURL } = require("./controllers/url");
+require("dotenv").config();
 
 connectToMongoDB("mongodb://127.0.0.1:27017/short-url")
   .then(() => console.log("MongoDB Connected"))
@@ -30,6 +31,4 @@ client.on("interactionCreate", (interaction) => {
   interaction.reply("Pong!!");
 });
 
-client.login(
-  "MTIzNDIxNTk5ODA0NzkxMTk2Ng.GvfyPZ.D-StkFiD8KmICy3piWx9c3WDXtfW5L3wFsUNyI"
-);
+client.login(process.env.TOKEN);
